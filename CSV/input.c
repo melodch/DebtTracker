@@ -41,6 +41,7 @@ void log_expense_or_settlement() {
     char change[5];
     char message[MESSAGE_MAX];
     int one, two, ch;
+    char exp_or_settle[3];
 
     puts("Enter filename: ");
     fgets(file_str, 100, stdin);
@@ -62,13 +63,11 @@ void log_expense_or_settlement() {
     puts("Enter message: ");
     fgets(message, MESSAGE_MAX, stdin);
 
-    // puts("Enter 'e' for expense, 's' for settlement: ");
-    // fgets(message, MESSAGE_MAX, stdin);
+    puts("Enter 'e' for expense, 's' for settlement: ");
+    fgets(exp_or_settle, 3, stdin);
+    char exp_or_set = exp_or_settle[0];
 
-    // printf("1: %d\n", one);
-    // printf("2: %d\n", two);
-    // printf("change: %d\n", ch);
-
-    log_action(file_str, one, two, ch);
-    update_bills(user1, user2, ch, message);
+    if (exp_or_set == 'e') log_action(file_str, one, two, ch);
+    else log_action(file_str, two, one, ch);
+    update_bills(user1, user2, ch, message, exp_or_set);
 }

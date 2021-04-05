@@ -16,9 +16,9 @@ int main() {
 
     puts("0: Set up new group");
     puts("1: Log expense or settlement");
-    puts("3: Add user");
-    puts("4: Generate personal bill");
-    puts("5: View exchanges for user");
+    puts("2: Add user");
+    puts("3: Generate personal bill");
+    puts("4: View exchanges for user");
     
     puts("What would you like to do? (Input Number)");
     fgets(action, 3, stdin);

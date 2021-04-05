@@ -77,7 +77,7 @@ void log_action(char* file, int c, int r, int change) {
                     num += change;
                     fprintf(new_fp, "%d ", num);
                 }
-                if (column == r && row == c) {
+                else if (column == r && row == c) {
                     int num = atoi(value);
                     num -= change;
                     fprintf(new_fp, "%d ", num);
@@ -97,7 +97,7 @@ void log_action(char* file, int c, int r, int change) {
     }
 }
 
-void update_bills(char* user1, char* user2, int payment, char* message) {
+void update_bills(char* user1, char* user2, int payment, char* message, char exp_or_settle) {
 
     FILE *file;
 
@@ -105,15 +105,29 @@ void update_bills(char* user1, char* user2, int payment, char* message) {
     if(file == NULL) {
         perror("Error opening user1 file");
     }
-    fprintf(file, "You paid %s $%d for", user2, payment);
-    fprintf(file, "%s", message);
-    fclose(file);
-
+    if (exp_or_settle == 'e') {
+        fprintf(file, "You paid %s $%d for ", user2, payment);
+        fprintf(file, "%s", message);
+        fclose(file);
+    }
+    else {
+        fprintf(file, "%s owes you $%d for ", user1, payment);
+        fprintf(file, "%s", message);
+        fclose(file);
+    }
+    
     file = fopen(user2, "a");
     if(file == NULL) {
         perror("Error opening user2 file");
     }
-    fprintf(file, "%s paid you $%d for", user1, payment);
-    fprintf(file, "%s", message);
-    fclose(file);
+    if (exp_or_settle == 'e') {
+        fprintf(file, "%s paid you $%d for ", user1, payment);
+        fprintf(file, "%s", message);
+        fclose(file);
+    }
+    else {
+        fprintf(file, "You owe %s $%d for ", user2, payment);
+        fprintf(file, "%s", message);
+        fclose(file);
+    }
 }
