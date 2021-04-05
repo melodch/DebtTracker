@@ -44,16 +44,20 @@ void log_expense_or_settlement() {
     char exp_or_settle[3];
 
     puts("Enter filename: ");
-    fgets(file_str, 100, stdin);
+    fgets(file_str, FILENAME_MAX, stdin);
+
+    puts("Enter 'e' for expense, 's' for settlement: ");
+    fgets(exp_or_settle, 3, stdin);
+    char exp_or_set = exp_or_settle[0];
 
     puts("Enter first user: ");
     fgets(user1, USERNAME_MAX, stdin);
-    user1[strcspn(user1, "\n")] = 0;
+    user1[strcspn(user1, " \n")] = 0;
     one = user_to_index(file_str, user1);
 
     puts("Enter second user: ");
     fgets(user2, USERNAME_MAX, stdin);
-    user2[strcspn(user2, "\n")] = 0;
+    user2[strcspn(user2, " \n")] = 0;
     two = user_to_index(file_str, user2);
 
     puts("Enter payment value: ");
@@ -63,11 +67,24 @@ void log_expense_or_settlement() {
     puts("Enter message: ");
     fgets(message, MESSAGE_MAX, stdin);
 
-    puts("Enter 'e' for expense, 's' for settlement: ");
-    fgets(exp_or_settle, 3, stdin);
-    char exp_or_set = exp_or_settle[0];
-
     if (exp_or_set == 'e') log_action(file_str, one, two, ch);
     else log_action(file_str, two, one, ch);
     update_bills(user1, user2, ch, message, exp_or_set);
+}
+
+void generate_personal_bill() {
+
+    char file_str[FILENAME_MAX];
+    char user[USERNAME_MAX];
+    int user_i;
+
+    puts("Enter filename: ");
+    fgets(file_str, FILENAME_MAX, stdin);
+
+    puts("Enter user name: ");
+    fgets(user, USERNAME_MAX, stdin);
+    user[strcspn(user, " \n")] = 0;
+    user_i = user_to_index(file_str, user);
+
+    generate_personal_bill_action(file_str, user_i);
 }

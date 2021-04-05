@@ -4,11 +4,9 @@
     Functions to
         DONE create new group
         -    add new user
-        DONE log a settlement
-        -    log an expense
-        -    generate personl total (row - col)
+        DONE log a settlement / expense
+        -    generate personal total
         DONE update personal bills
-
  */
 int main() {
 
@@ -32,7 +30,11 @@ int main() {
             log_expense_or_settlement();
             break;
 
-        default : /* Optional */
+        case 3:
+            generate_personal_bill();
+            break;
+
+        default:
             printf("default");
     }
 }
