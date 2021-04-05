@@ -55,7 +55,7 @@ void new_group_action(char* filename, char* names[], int num_of_users) {
 }
 
 // Given row, col index, increment the value at that location by 'change'
-void change_point_in_csv_action(char* file, int c, int r, int change) {
+void log_action(char* file, int c, int r, int change) {
 
     FILE* fp = fopen(file, "r");
     if (!fp) printf("Can't open file (loc_func)\n"); 
@@ -75,6 +75,11 @@ void change_point_in_csv_action(char* file, int c, int r, int change) {
                 if (column == c && row == r) {
                     int num = atoi(value);
                     num += change;
+                    fprintf(new_fp, "%d ", num);
+                }
+                if (column == r && row == c) {
+                    int num = atoi(value);
+                    num -= change;
                     fprintf(new_fp, "%d ", num);
                 }
                 else (fprintf(new_fp,"%s ", value));
@@ -100,7 +105,7 @@ void update_bills(char* user1, char* user2, int payment, char* message) {
     if(file == NULL) {
         perror("Error opening user1 file");
     }
-    fprintf(file, "You paid %s $%d\n", user2, payment);
+    fprintf(file, "You paid %s $%d for", user2, payment);
     fprintf(file, "%s", message);
     fclose(file);
 
@@ -108,7 +113,7 @@ void update_bills(char* user1, char* user2, int payment, char* message) {
     if(file == NULL) {
         perror("Error opening user2 file");
     }
-    fprintf(file, "%s paid you $%d\n", user1, payment);
+    fprintf(file, "%s paid you $%d for", user1, payment);
     fprintf(file, "%s", message);
     fclose(file);
 }

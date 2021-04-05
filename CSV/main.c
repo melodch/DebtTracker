@@ -2,10 +2,12 @@
 
 /*  TODO:
     Functions to
-        DONE create new group, input names
+        DONE create new group
         -    add new user
-        DONE log an expense / settlement
-        -    view exchanges for input person
+        DONE log a settlement
+        -    log an expense
+        -    generate personl total (row - col)
+        DONE update personal bills
 
  */
 int main() {
@@ -14,10 +16,9 @@ int main() {
 
     puts("0: Set up new group");
     puts("1: Log expense or settlement");
-    puts("2: Add user");
-    puts("3: Generate personal bill");
-    puts("4: View exchanges for user");
-    puts("5: View all exchanges");
+    puts("3: Add user");
+    puts("4: Generate personal bill");
+    puts("5: View exchanges for user");
     
     puts("What would you like to do? (Input Number)");
     fgets(action, 3, stdin);
@@ -26,9 +27,9 @@ int main() {
         case 0:
             new_group_input();
             break;
-
+        
         case 1:
-            log_input();
+            log_expense_or_settlement();
             break;
 
         default : /* Optional */

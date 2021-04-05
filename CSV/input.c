@@ -34,7 +34,7 @@ void new_group_input() {
     new_group_action(file_str, names_arr, num_of_users);
 }
 
-void log_input() {
+void log_expense_or_settlement() {
 
     char file_str[FILENAME_MAX];
     char user1[USERNAME_MAX], user2[USERNAME_MAX];
@@ -55,17 +55,20 @@ void log_input() {
     user2[strcspn(user2, "\n")] = 0;
     two = user_to_index(file_str, user2);
 
-    puts("Enter change value: ");
+    puts("Enter payment value: ");
     fgets(change, 5, stdin);
     ch = atoi(change);
 
     puts("Enter message: ");
     fgets(message, MESSAGE_MAX, stdin);
 
+    // puts("Enter 'e' for expense, 's' for settlement: ");
+    // fgets(message, MESSAGE_MAX, stdin);
+
     // printf("1: %d\n", one);
     // printf("2: %d\n", two);
     // printf("change: %d\n", ch);
 
-    change_point_in_csv_action(file_str, one, two, ch);
+    log_action(file_str, one, two, ch);
     update_bills(user1, user2, ch, message);
 }
