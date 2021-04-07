@@ -66,4 +66,8 @@ while (value) {
 ```
 For our program architecture, we organized our code into three functional areas: [main](../CSV/main.c), [input file](../CSV/input.c) and [action](../CSV/action.c). The main file defines our main menu, while the input file stores functions that prompt the user for information needed for certain tasks, and the action file uses that information to carry out those tasks, working directly with the database. With this type of structure, each feature has an associated input and action function, which is apparent in the [header file](../CSV/main.h). This kind of code structure allowed us to easily follow and find errors in our dataflow.
 
+<p align="center">
+<img src="images/gtkapp.png" alt="Debt Tracker with GTK GUI" width="400"/>
+<p/>
+
 We feel that our final product meets the project goals we set for ourselves. Having implemented our program, we can still imagine it being a useful tool to have within our suite and for other people who want to keep track of group transactions. Our application also has a user-interactive aspect to it which we were interested in implementing. We also feel that our personal learning goals were met. Walter feels a lot more comfortable with learning how to create, store, and get information from files. His goal was to be able to get more comfortable with coding in C and using certain functions to be able to call one another. He certainly feels more proficient in this way, having practiced techniques like making files and using small tools to help make code reusable. Working on this project has been a huge improvement! Melody also feels much more confident coding in C after working on this project. With structuring this program, she was able to practice organizing code and data management.
