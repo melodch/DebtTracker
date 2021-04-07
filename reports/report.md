@@ -21,7 +21,7 @@ Our final project is a command line program that has the six main features we pl
 <img src="images/fig1.png" alt="Main Menu" width="350"/>
  <p/>
  
-This is a representation of our program’s “Main Menu”. From here, the user chooses a function to perform by entering a number linked to a specific task. This is a simple switch case that calls on the function associated with the chosen task.
+This is a representation of our program’s [main menu](../CSV/main.c). From here, the user chooses a function to perform by entering a number linked to a specific task. This is a simple switch case that calls on the function associated with the chosen task.
 
 <p align="center">
  <img src="images/fig2.png" alt="Setting up a new group" width="350"/>
@@ -33,7 +33,7 @@ To illustrate how our program works, we’ll walk through an example in which th
  <img src="images/fig3.png" alt="Group file" width="350"/>
 <p/>
 
-Now that we have a file to contain group information, this serves as the central database of our program. Looking at this file allows us to track the users within the group, in terms of how much money they owe each other. This is the heart of our operation, the debt tracker. As transactions are made, the values in this file are updated accordingly. We structured the contents of this file to be read as a table, so that a users column represents how much money they are owed and their row represents how much money they owe others. At any point on the table, the row user owes the column user that sum of money. This way, the implementation of our other program features involve simple file operations to manipulate and read data from this group file.
+Now that we have a file to contain group information, this serves as the central database of our program. Looking at this file allows us to track the users within the group, in terms of how much money they owe each other. As transactions are made, the values in this file are updated accordingly. We structured the contents of this file to be read as a table, so that a users column represents how much money they are owed and their row represents how much money they owe others. At any point on the table, the row user owes the column user that sum of money. This way, the implementation of our other program features involve simple file operations to manipulate and read data from this group file.
 
 <p align="center">
 <img src="images/log_trans.png" alt="Add transaction" width="350"/><img src="images/fig4.png" alt="Group file after add transaction" width="350"/>
@@ -64,16 +64,6 @@ while (value) {
     column++;
 }
 ```
+For our program architecture, we organized our code into three functional areas: [main](../CSV/main.c), [input file](../CSV/input.c) and [action](../CSV/action.c). The main file defines our main menu, while the input file stores functions that prompt the user for information needed for certain tasks, and the action file uses that information to carry out those tasks, working directly with the database. With this type of structure, each feature has an associated input and action function, which is apparent in the [header file](../CSV/main.h). This kind of code structure allowed us to easily follow and find errors in our dataflow.
 
-
-
-[input file](../CSV/input.c)
-[action file](../CSV/action.c)
-[main file](../CSV/main.c)
-
-
-
-
-
-
-
+We feel that our final product meets the project goals we set for ourselves. Having implemented our program, we can still imagine it being a useful tool to have within our suite and for other people who want to keep track of group transactions. Our application also has a user-interactive aspect to it which we were interested in implementing. We also feel that our personal learning goals were met. Walter feels a lot more comfortable with learning how to create, store, and get information from files. His goal was to be able to get more comfortable with coding in C and using certain functions to be able to call one another. He certainly feels more proficient in this way, having practiced techniques like making files and using small tools to help make code reusable. Working on this project has been a huge improvement! Melody also feels much more confident coding in C after working on this project. With structuring this program, she was able to practice organizing code and data management.
