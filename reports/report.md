@@ -7,7 +7,7 @@ The learning goal we set out to achieve by working on this project was to develo
  
 To get started, we looked at existing software that performs the same task of debt tracking, namely, Splitwise. This helped us choose which features we wanted to include in our program. We decided to further define our MVP as being a program that carries out these six basic functions:
 
-<palign="center">
+<p align="center">
 <img src="images/Miro.jpg" alt="Choosing program features" width="600"/>
 <p/>
 
@@ -17,7 +17,7 @@ When debugging and figuring out how to approach certain hurdles in our project, 
  
 Our final project is a command line program that has the six main features we planned to include. When we run our program, it prompts the user with a list of functions to choose from:
 
-<palign="center">
+<p align="center">
 <img src="images/fig1.png" alt="Main Menu" width="350"/>
  <p/>
  
@@ -29,19 +29,19 @@ This is a representation of our program’s [main menu](../CSV/main.c). From her
 
 To illustrate how our program works, we’ll walk through an example in which the user sets up a new group. The user enters ‘0’ into the command line which triggers a function that gathers information from the user needed to set up a new group. In this case, the user enters a file name to host the group data, the number of users that will be in the group, and their names. With this information, the program creates a plain text file to store group information as a table and an empty text file for each of the users.
 
-<palign="center">
+<p align="center">
  <img src="images/fig3.png" alt="Group file" width="350"/>
 <p/>
 
 Now that we have a file to contain group information, this serves as the central database of our program. Looking at this file allows us to track the users within the group, in terms of how much money they owe each other. As transactions are made, the values in this file are updated accordingly. We structured the contents of this file to be read as a table, so that a users column represents how much money they are owed and their row represents how much money they owe others. At any point on the table, the row user owes the column user that sum of money. This way, the implementation of our other program features involve simple file operations to manipulate and read data from this group file.
 
-<palign="center">
+<p align="center">
 <img src="images/log_trans.png" alt="Add transaction" width="350"/><img src="images/fig4.png" alt="Group file after add transaction" width="350"/>
 <p/>
 
 For example, logging a transaction between two people can be reflected in the data by changing the values at the corresponding indexes. To log a transaction where Walter paid $15 for Melody's Uber ride, the values in the main file are updated. The function will also update personal bill files so users are able to specify the cost and reason for a payment to have taken place, and keep a receipt of past transactions.
 
-<palign="center">
+<p align="center">
 <img src="images/fig5.png" alt="Walter's File" width="350"/><img src="images/fig6.png" alt="Melody's file" width="350"/>
 <p/>
 
@@ -78,7 +78,7 @@ void log_action(char* file, int c, int r, int change);
 
 To improve our user interface, we explored the GTK toolkit. This allowed us to create a window and buttons for the user to interact with, as opposed to typing into the terminal command line. With time, we could easily develop our [GTK application](../GTK/gtkapp.c) to include all of our program features. Currently, the program is able to create a main menu window with buttons on the left hand side that allow the user to pick a function to perform. This window shows a user creating a new group using the GTK program, which has a much friendlier interface:
 
-<palign="center">
+<p align="center">
 <img src="images/gtkapp.png" alt="Debt Tracker with GTK GUI" width="450"/>
 <p/>
 
