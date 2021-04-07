@@ -11,7 +11,7 @@
 void generate_personal_bill();
 void update_bills(char* user1, char* user2, int payment, char* message, char expense_or_settle);
 int user_to_index(char* filename, char* user);
-void index_to_user(char* filename, int user_i, char* name[]);
+void index_to_user(char* filename, int user_i, char* name);
 
 // "Set up a new group" functions
 void new_group_input();

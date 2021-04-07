@@ -1,6 +1,6 @@
 #include "main.h"
 
-/* Main menu tool in order to reuse for other parts of our tracker*/
+// Main menu function to return to after each action
 void mainMenu() {
     char action[3];
 
@@ -25,8 +25,6 @@ void mainMenu() {
         case 3: 
             generate_personal_bill();
             break;
-        default : /* Optional */
-            printf("default");
     }
 }
 

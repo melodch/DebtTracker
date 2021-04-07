@@ -1,5 +1,10 @@
 #include "gtkapp.h"
-// gcc `pkg-config --cflags gtk+-3.0` gtkapp.c -o gtkapp `pkg-config --libs gtk+-3.0`
+/*
+ To install GTK:
+ sudo apt-get install libgtk-3-dev
+ To compile this program:
+ gcc `pkg-config --cflags gtk+-3.0` gtkapp.c -o gtkapp `pkg-config --libs gtk+-3.0`
+ */
 
 GtkWidget *main_window, *fixed;
 GtkWidget *fnInput, *nuInput, *unInput;
@@ -27,7 +32,6 @@ void show_group(GtkWidget *show_group, gpointer data) {
 void create_new_group(GtkWidget *new_group, gpointer data) {
 
     GtkWidget *filename_lbl, *num_users_lbl, *user_names_lbl;
-    // GtkWidget *fnInput, *nuInput, *unInput;
     GtkWidget *ok;
 
     int button_i = 1;
@@ -38,9 +42,6 @@ void create_new_group(GtkWidget *new_group, gpointer data) {
     fnInput = gtk_entry_new();
     nuInput = gtk_entry_new();
     unInput = gtk_entry_new();
-    // filename = (char *)gtk_entry_get_text(GTK_ENTRY(fnInput));
-    // num_users = atoi((char *)gtk_entry_get_text(GTK_ENTRY(nuInput)));
-    // user_names = (char *)gtk_entry_get_text(GTK_ENTRY(unInput));
     gtk_fixed_put(GTK_FIXED(fixed), fnInput, input_col_i, (button_i++)*BUTTON_SPACING);
     gtk_fixed_put(GTK_FIXED(fixed), nuInput, input_col_i, (button_i++)*BUTTON_SPACING);
     gtk_fixed_put(GTK_FIXED(fixed), unInput, input_col_i, (button_i++)*BUTTON_SPACING);
@@ -65,6 +66,8 @@ void create_new_group(GtkWidget *new_group, gpointer data) {
 }
 
 void ok_return_to_main(GtkWidget *calculate, gpointer data) {
+
+    // Store data input
     filename = (char *)gtk_entry_get_text(GTK_ENTRY(fnInput));
     num_of_users = atoi((char *)gtk_entry_get_text(GTK_ENTRY(nuInput)));
     user_names = (char *)gtk_entry_get_text(GTK_ENTRY(unInput));
@@ -82,6 +85,7 @@ void set_up_main_menu() {
     fixed = gtk_fixed_new();
     gtk_container_add(GTK_CONTAINER(main_window), fixed);
 
+    // Create buttons on left hand side
     int button_i = 0;
     show_csv = gtk_button_new_with_label("Show group");
     g_signal_connect(show_csv, "clicked", G_CALLBACK(show_group), NULL);
@@ -108,13 +112,12 @@ void set_up_main_menu() {
     gtk_widget_show_all(main_window);
 }
 
-
 int main(int argc, char *argv[]) {
 
     gtk_init(&argc, &argv);
     main_window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
     gtk_window_set_title(GTK_WINDOW(main_window), "Debt Tracker");
-    gtk_window_set_default_size(GTK_WINDOW(main_window), 600, 600);
+    gtk_window_set_default_size(GTK_WINDOW(main_window), 600, 250);
     gtk_window_set_position(GTK_WINDOW(main_window), GTK_WIN_POS_CENTER);
     gtk_window_set_resizable(GTK_WINDOW(main_window), FALSE);
 
@@ -123,15 +126,12 @@ int main(int argc, char *argv[]) {
     g_signal_connect(G_OBJECT(main_window), "destroy", 
         G_CALLBACK(gtk_main_quit), NULL);
 
-    // gtk_widget_show_all(main_window);
-
     gtk_main();
 
     return 0;
 }
 
-// initialize CSV file with values 0, generate bill txt files
-// void new_group_action(char* filename, char* names_str, int num_of_users) {
+// Create new group
 void new_group_action(char* filename, char* names, int num_of_users) {
 
     FILE *csv_file;
@@ -159,13 +159,13 @@ void new_group_action(char* filename, char* names, int num_of_users) {
     }
 
     for(int i = 0; i < num_of_users; i++) {
-        // Set up CSV file
+        // Set up group file
         fprintf(csv_file, "\n%s", names_arr[i]);
         for(int j = 0; j < num_of_users; j++) {
             fprintf(csv_file," %d", 0);
         }
 
-        // Create bill file
+        // Create individual bill files
         bill_file = fopen(names_arr[i],"w+");
         fclose(bill_file);
     }

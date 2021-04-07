@@ -11,11 +11,15 @@ int user_to_index(char* filename, char* user) {
 
     file = fopen(filename,"r");
     if (fgets(line, MAXLINE, file)) {
+        // Copy first line of file into buffer
         strcpy(buffer, line);
         fclose(file);
     }
+
+    // Loop through line of names
     char* value = strtok(buffer, " \n");
     while (value) {
+        // If current name matches the target user name
         if (strcmp(value, user) == 0) {
             return loop_index;
         }
@@ -25,7 +29,7 @@ int user_to_index(char* filename, char* user) {
     return -1;
 }
 
-void index_to_user(char* filename, int user_i, char* names[]) {
+void index_to_user(char* filename, int user_i, char* name) {
 
     FILE *file;
     char line[MAXLINE];
@@ -46,51 +50,52 @@ void index_to_user(char* filename, int user_i, char* names[]) {
     // Loop through line of names
     char* value = strtok(buffer, " \n");
     while (value) {
-        // if (loop_index == user_i) {
-        //     strcpy(names[loop_index], value);
-        // }
-        strcpy(names[loop_index], value);
+        // If current index matches the target user index
+        if (loop_index == user_i) {
+            strcpy(name, value);
+        }
         value = strtok(NULL, " \n");
         loop_index++;
     }
     
 }
 
-// initialize CSV file with values 0, generate bill txt files
+// Initialize group file with values 0, generate individual bill files
 void new_group_action(char* filename, char* names[], int num_of_users) {
 
-    FILE *csv_file;
+    FILE *group_file;
     FILE *bill_file;
 
-    // filename=strcat(filename,".csv");
-    csv_file = fopen(filename,"w+");
+    group_file = fopen(filename,"w+");
 
-    fprintf(csv_file,"Name");
+    fprintf(group_file,"Name");
     for (int n = 0; n < num_of_users; n++) {
-        fprintf(csv_file, " %s", names[n]);
+        fprintf(group_file, " %s", names[n]);
     }
 
     for(int i = 0; i < num_of_users; i++) {
-        // Set up CSV file
-        fprintf(csv_file, "\n%s", names[i]);
+        // Set up group file
+        fprintf(group_file, "\n%s", names[i]);
         for(int j = 0; j < num_of_users; j++) {
-            fprintf(csv_file," %d", 0);
+            fprintf(group_file," %d", 0);
         }
 
         // Create bill file
         bill_file = fopen(names[i],"w+");
         fclose(bill_file);
     }
-    fclose(csv_file);
+    fclose(group_file);
+    mainMenu();
 }
 
-// Given row, col index, increment the value at that location by 'change'
+// Given row, col index, update value at that location with change
 void log_action(char* file, int c, int r, int change) {
 
     FILE* fp = fopen(file, "r");
     if (!fp) printf("Can't open file\n"); 
     else {
-        // create new csv which we will copy all values from old csv into, except for changed value
+        // Create new file which we will copy all values from old file into,
+        // except for changed value
         FILE *new_fp;
         char *new_file = "newfile";
         new_fp = fopen(new_file,"w+");
@@ -99,11 +104,14 @@ void log_action(char* file, int c, int r, int change) {
         int column;
         int row = 0;
         
+        // Loop through file line by line
         while (fgets(line, MAXLINE, fp)) {
             column = 0;
             strcpy(buffer, line);
             char* value = strtok(buffer, " \n");
+            // Loop through line value by value
             while (value) {
+                printf("value: %s\n", value);
                 if (column == c && row == r) {
                     int num = atoi(value);
                     num += change;
@@ -125,8 +133,10 @@ void log_action(char* file, int c, int r, int change) {
         fclose(new_fp);
         rename(new_file, file);
     }
+    mainMenu();
 }
 
+// Update personal bills with transaction amount and message
 void update_bills(char* user1, char* user2, int payment, char* message, char exp_or_settle) {
 
     FILE *file;
@@ -158,15 +168,18 @@ void update_bills(char* user1, char* user2, int payment, char* message, char exp
         fprintf(file, "%s", message);
     }
     fclose(file);
+    mainMenu();
 }
 
+// Generate personal bill for given user
+// Shows how much they owe each person or how much each person owes them
 void generate_personal_bill_action(char* filename, char *user) {
 
     FILE* file = fopen(filename, "r");
     int row = 0;
     char line[MAXLINE];
     char buffer[MAXLINE];
-    char* names[50];
+    char name[USERNAME_MAX];
     int val;
     int total = 0;
     int user_i = user_to_index(filename, user);
@@ -174,54 +187,38 @@ void generate_personal_bill_action(char* filename, char *user) {
     char file_str[FILENAME_MAX];
     strcpy(file_str, filename);
     FILE* new_file = fopen(strcat(user,"_total"), "w+");
-
-    // Populate array of user names
-    int loop_index = 0;
-    if (fgets(line, MAXLINE, file)) {
-        // Copy first line of file into buffer
-        strcpy(buffer, line);
-    }
-    else {
-        puts("Index to user error");
-        exit(EXIT_FAILURE);
-    }
-    // Loop through line of names
-    char* value = strtok(buffer, " \n");
-    while (value) {
-        // if (loop_index == user_i) {
-        //     strcpy(names[loop_index], value);
-        // }
-        strcpy(names[loop_index], value);
-        value = strtok(NULL, " \n");
-        loop_index++;
-    }
-
     if (!file) printf("Can't open file\n");
-    while (fgets(line, MAXLINE, file)) {
-        printf("line: %s", line);
-        if (row == user_i) {
-            int col = 1;
-            strcpy(buffer, line);
-            char* value = strtok(buffer, " \n");
-            int val_i = 0;
-            while (value) {
-                printf("value: %s\n", value);
-                val = atoi(value);
-                if (val < 0) fprintf(new_file, "You owe %s $%d\n", names[col], -val);
-                else if (val > 0) fprintf(new_file, "%s owes you $%d\n", names[col], val);
-                total += val;
-                value = strtok(NULL, " \n");
-                col++;
-                val_i++;
+    else {
+        // Loop through file line by line
+        while (fgets(line, MAXLINE, file)) {
+            if (row == user_i) {
+                int col = 1;
+                strcpy(buffer, line);
+                char* value = strtok(buffer, " \n");
+                int val_i = 0;
+                // Loop through line value by value
+                while (value) {
+                    if (val_i != 0) {
+                        index_to_user(filename, col, name);
+                        val = atoi(value);
+                        if (val < 0) fprintf(new_file, "%s owes you $%d\n", name, val);
+                        else if (val > 0) fprintf(new_file, "You owe %s $%d\n", name, -val);
+                        total += val;
+                    }
+                    value = strtok(NULL, " \n");
+                    col++;
+                    val_i++;
+                }
             }
+            row++;
         }
-        row++;
     }
 
-    fprintf(new_file, "\nYour total is $%d", total);
+    fprintf(new_file, "\nYour total is $%d", -total);
 
     fclose(new_file);
     fclose(file);
+    mainMenu();
 }
 
 void add_user(char* filename, char *addedUser) {
@@ -273,10 +270,6 @@ void add_user(char* filename, char *addedUser) {
     fclose(fTemp);
     /* Rename temporary file as original file */
     rename("replace.tmp", filename);
-    /* Once made a new file, I want to 
-        1. Write to the "name bar" in the CSV file
-        2. Append to the file and make row with 0's
-    */
 
     fclose(file);
     mainMenu();

@@ -7,7 +7,9 @@ void new_group_input() {
     char n_of_users[4];
     int num_of_users;
 
-    puts("Enter filename: ");
+    // Get group filename, number of users in the group,
+    // and user names
+    puts("Enter group name: ");
     fgets(file_str, FILENAME_MAX, stdin);
 
     puts("Enter number of users: ");
@@ -23,8 +25,6 @@ void new_group_input() {
         names_arr[name_i] = name;
         name = strtok(NULL, " \n");
         name_i++;
-        // printf("name_i: %d", name_i);
-        // printf("name: %s", name);
         if (name==NULL && name_i < num_of_users) {
             puts("Number of user names given doesn't match number of users");
             exit(EXIT_FAILURE);
@@ -43,6 +43,8 @@ void log_input() {
     int one, two, ch;
     char exp_or_settle[3];
 
+    // Get group filename, users that transaction is happening between,
+    // payment, and message to attach to transaction
     puts("Enter group name: ");
     fgets(file_str, FILENAME_MAX, stdin);
 
@@ -78,13 +80,13 @@ void generate_personal_bill() {
     char user[USERNAME_MAX];
     int user_i;
 
+    // Get group filename and user name to generate personal bill for
     puts("Enter group name: ");
     fgets(file_str, FILENAME_MAX, stdin);
 
     puts("Enter user name: ");
     fgets(user, USERNAME_MAX, stdin);
     user[strcspn(user, " \n")] = 0;
-    // user_i = user_to_index(file_str, user);
 
     generate_personal_bill_action(file_str, user);
 }
@@ -94,7 +96,7 @@ void add_user_input() {
     char group_name[FILENAME_MAX]; 
     char addedUser[USERNAME_MAX];
 
-    // Getting location where to add the user to + count number of users NOW in the group
+    // Get group filename and user name to add
     puts("Add this user to: ");
     fgets(group_name, FILENAME_MAX, stdin);
     
