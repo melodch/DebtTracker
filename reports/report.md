@@ -66,6 +66,16 @@ while (value) {
 ```
 For our program architecture, we organized our code into three functional areas: [main](../CSV/main.c), [input file](../CSV/input.c) and [action](../CSV/action.c). The main file defines our main menu, while the input file stores functions that prompt the user for information needed for certain tasks, and the action file uses that information to carry out those tasks, working directly with the database. With this type of structure, each feature has an associated input and action function, which is apparent in the [header file](../CSV/main.h). This kind of code structure allowed us to easily follow and find errors in our dataflow.
 
+```
+// "Set up a new group" functions
+void new_group_input();
+void new_group_action(char* filename, char* names[], int num_of_users);
+
+// "Log expense or settlement" functions
+void log_input();
+void log_action(char* file, int c, int r, int change);
+```
+
 To improve our user interface, we explored the GTK toolkit. This allowed us to create a window and buttons for the user to interact with, as opposed to typing into the terminal command line. With time, we could easily develop our [GTK application](../GTK/gtkapp.c) to include all of our program features. Currently, the program is able to create a main menu window with buttons on the left hand side that allow the user to pick a function to perform. This window shows a user creating a new group using the GTK program:
 
 <p align="center">
