@@ -14,15 +14,15 @@ When debugging and figuring out how to approach certain hurdles in our project, 
  
 Our final project is a command line program that has the six main features we planned to include. When we run our program, it prompts the user with a list of functions to choose from:
 <p align="center">
-<img src="images/fig1.png" alt="Main Menu" width="300"/>
+<img src="images/fig1.png" alt="Main Menu" width="350"/>
  <p/>
 This is a representation of our program’s “Main Menu”. From here, the user chooses a function to perform by entering a number linked to a specific task. This is a simple switch case that calls on the function associated with the chosen task.
 <p align="center">
- <img src="images/fig2.png" alt="Setting up a new group" width="300"/>
+ <img src="images/fig2.png" alt="Setting up a new group" width="350"/>
 <p/>
 To illustrate how our program works, we’ll walk through an example in which the user sets up a new group. The user enters ‘0’ into the command line which triggers a function that gathers information from the user needed to set up a new group. In this case, the user enters a file name to host the group data, the number of users that will be in the group, and their names. With this information, the program creates a plain text file to store group information as a table and an empty text file for each of the users.
 <p align="center">
- <img src="images/fig3.png" alt="Group file" width="300"/>
+ <img src="images/fig3.png" alt="Group file" width="350"/>
 <p/>
 Now that we have a file to contain group information, this serves as the central database of our program. Looking at this file allows us to track the users within the group, in terms of how much money they owe each other. This is the heart of our operation, the debt tracker. As transactions are made, the values in this file are updated accordingly. We structured the contents of this file to be read as a table, so that a users column represents how much money they are owed and their row represents how much money they owe others. At any point on the table, the row user owes the column user that sum of money. This way, the implementation of our other program features involve simple file operations to manipulate and read data from this group file. 
 
