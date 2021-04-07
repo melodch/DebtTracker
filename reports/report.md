@@ -28,7 +28,9 @@ Now that we have a file to contain group information, this serves as the central
 <p align="center">
  <img src="images/fig4.png" alt="Group file" width="350"/>
 <p/>
-<img src="images/fig5.png" alt="Group file" width="350"/> | <img src="images/fig6.png" alt="Group file" width="350"/>
+<p align="center">
+<img src="images/fig5.png" alt="Group file" width="350"/><img src="images/fig6.png" alt="Group file" width="350"/>
+<p/>
 
 usable debt tracking feature that our program aims to conduct. Here, we are able to enter the group in which we are trying to add to. We have two different options ‘e’ and ‘s’ that allow the user to choose between what they want to do. They are then able to type in both people that are making the transaction, and then they are able to write the cost and reason for the payment to have taken place.
 
