@@ -76,7 +76,7 @@ void log_input();
 void log_action(char* file, int c, int r, int change);
 ```
 
-To improve our user interface, we explored the GTK toolkit. This allowed us to create a window and buttons for the user to interact with, as opposed to typing into the terminal command line. With time, we could easily develop our [GTK application](../GTK/gtkapp.c) to include all of our program features. Currently, the program is able to create a main menu window with buttons on the left hand side that allow the user to pick a function to perform. This window shows a user creating a new group using the GTK program:
+To improve our user interface, we explored the GTK toolkit. This allowed us to create a window and buttons for the user to interact with, as opposed to typing into the terminal command line. With time, we could easily develop our [GTK application](../GTK/gtkapp.c) to include all of our program features. Currently, the program is able to create a main menu window with buttons on the left hand side that allow the user to pick a function to perform. This window shows a user creating a new group using the GTK program, which has a much friendlier interface:
 
 <p align="center">
 <img src="images/gtkapp.png" alt="Debt Tracker with GTK GUI" width="450"/>
