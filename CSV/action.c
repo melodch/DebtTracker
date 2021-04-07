@@ -104,7 +104,6 @@ void log_action(char* file, int c, int r, int change) {
             strcpy(buffer, line);
             char* value = strtok(buffer, " \n");
             while (value) {
-                printf("value: %s\n", value);
                 if (column == c && row == r) {
                     int num = atoi(value);
                     num += change;
@@ -124,8 +123,6 @@ void log_action(char* file, int c, int r, int change) {
         }
         fclose(fp);
         fclose(new_fp);
-        // implementation-defined?
-        // https://stackoverflow.com/questions/41926099/does-the-c-rename-function-delete-files
         rename(new_file, file);
     }
 }

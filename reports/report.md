@@ -15,5 +15,32 @@ A major starting resource is online research into existing data management appli
 We're currently working on making sure that user input is stored and is able to be used to manipulate values from within the csv and txt files. Our MVP is a product that allows us to track changing values for at least 2 people and output a bill for each person. To deepen our project, we can work on expanding the application to include more individuals. Walter is working on using pointers to be able to get information around in functions. He is also trying to lay out how information can be retrieved once the user has inputted one round of information. Melody is thinking about how data can be stored in a csv and is working on functions for csv creation and manipulation. This is done when the function can interface with Walter's work to take in user-input and update the csv.
 
 [input file](../CSV/input.c)
-[action file](https://github.com/melodch/SoftSysPragmaticProgrammers/blob/main/CSV/action.c)
-[main file](CSV/main.c)
+[action file](../CSV/action.c)
+[main file](../CSV/main.c)
+
+
+```
+while (fgets(line, MAXLINE, fp)) {
+    column = 0;
+    strcpy(buffer, line);
+    char* value = strtok(buffer, " \n");
+    while (value) {
+        if (column == c && row == r) {
+            int num = atoi(value);
+            num += change;
+            fprintf(new_fp, "%d ", num);
+        }
+        else if (column == r && row == c) {
+            int num = atoi(value);
+            num -= change;
+            fprintf(new_fp, "%d ", num);
+        }
+        else (fprintf(new_fp,"%s ", value));
+        value = strtok(NULL, " \n");
+        column++;
+    }
+    fprintf(new_fp,"\n");
+    row++;
+}
+```
+
