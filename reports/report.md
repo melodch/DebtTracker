@@ -39,25 +39,15 @@ Now that we have a file to contain group information, this serves as the central
 <img src="images/log_trans.png" alt="Add transaction" width="350"/><img src="images/fig4.png" alt="Group file after add transaction" width="350"/>
 <p/>
 
-For example, logging a transaction between two people can be reflected in the data by changing the values at the corresponding indexes. To log a transaction where Walter paid $15 for Melody's Uber ride, the values in the main file are updated. The function will also update personal files so users are able to specify the cost and reason for a payment to have taken place, and keep a log of past transactions.
+For example, logging a transaction between two people can be reflected in the data by changing the values at the corresponding indexes. To log a transaction where Walter paid $15 for Melody's Uber ride, the values in the main file are updated. The function will also update personal bill files so users are able to specify the cost and reason for a payment to have taken place, and keep a receipt of past transactions.
 
 <p align="center">
 <img src="images/fig5.png" alt="Walter's File" width="350"/><img src="images/fig6.png" alt="Melody's file" width="350"/>
 <p/>
 
-
-
-
-
-[input file](../CSV/input.c)
-[action file](../CSV/action.c)
-[main file](../CSV/main.c)
-
-
-
-
-
+The code snippet below, from the [action file](../CSV/action.c), shows how values from the group file can be manipulated. Here, the original group file is opened to be read and a new group file that represents the updated values is opened to be written into. Strtok is used to traverse the table value by value, and the value at the right row and column index is changed to reflect a transaction having been made before being added to the updated group file. 
 ```
+char* value = strtok(buffer, " \n");
 while (value) {
     if (column == c && row == r) {
         int num = atoi(value);
@@ -74,4 +64,16 @@ while (value) {
     column++;
 }
 ```
+
+
+
+[input file](../CSV/input.c)
+[action file](../CSV/action.c)
+[main file](../CSV/main.c)
+
+
+
+
+
+
 
