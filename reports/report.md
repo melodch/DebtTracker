@@ -64,7 +64,7 @@ while (value) {
     column++;
 }
 ```
-For our program architecture, we organized our code into three functional areas: [main](../CSV/main.c), [input file](../CSV/input.c) and [action](../CSV/action.c). The main file defines our main menu, while the input file stores functions that prompt the user for information needed for certain tasks, and the action file uses that information to carry out those tasks, working directly with the database. With this type of structure, each feature has an associated input and action function, which is apparent in the [header file](../CSV/main.h). This kind of code structure allowed us to easily follow and find errors in our dataflow.
+For our program architecture, we organized our code into three functional areas: [main](../CSV/main.c), [input file](../CSV/input.c) and [action](../CSV/action.c). The main file defines our main menu, while the input file stores functions that prompt the user for information needed for certain tasks, and the action file uses that information to carry out those tasks, working directly with the database. With this type of structure, each feature has an associated input and action function, which is apparent in the following snippet of our [header file](../CSV/main.h). This kind of code structure allowed us to easily follow and find errors in our dataflow.
 
 ```
 // "Set up a new group" functions
