@@ -23,7 +23,7 @@ Our final project is a command line program that has the six main features we pl
  
 This is a representation of our program’s [main menu](../CSV/main.c). From here, the user chooses a function to perform by entering a number linked to a specific task. This is a simple switch case that calls on the function associated with the chosen task.
 
-<palign="center">
+<p align="center">
  <img src="images/fig2.png" alt="Setting up a new group" width="350"/>
 <p/>
 
