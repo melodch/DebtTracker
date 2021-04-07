@@ -14,8 +14,7 @@ When debugging and figuring out how to approach certain hurdles in our project, 
  
 Our final project is a command line program that has the six main features we planned to include. When we run our program, it prompts the user with a list of functions to choose from:
 
-<img src="images/Miro.jpg" alt="Choosing program features" width="200"/>
-<img src="images/Miro.jpg" alt="Choosing program features" width="150"/>
+<img src="images/Miro.jpg" alt="Choosing program features" width="200"/><img src="images/Miro.jpg" alt="Choosing program features" width="150"/>
 
 [input file](../CSV/input.c)
 [action file](../CSV/action.c)
