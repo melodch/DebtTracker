@@ -1,4 +1,5 @@
 # Debt Tracking Application in C
+## Team Members: Melody Chiu and Walter Villa
  
 The goal for our project was to create a debt tracker program that allows users to track their expenses within a group over time. Our intention with making this program is for student groups to be able to keep track of how much money each person owes or is owed by each of the other group members. A debt tracker is something that is something useful that we would use within our suite, and we can imagine it being useful to other people who need to keep track of monetary exchanges. Our MVP is a working program that will be able to keep track of debt and manage certain users through a local terminal, and our ideal final product is to have an application that incorporates a friendlier UI.
  
@@ -35,16 +36,10 @@ To illustrate how our program works, we’ll walk through an example in which th
 Now that we have a file to contain group information, this serves as the central database of our program. Looking at this file allows us to track the users within the group, in terms of how much money they owe each other. This is the heart of our operation, the debt tracker. As transactions are made, the values in this file are updated accordingly. We structured the contents of this file to be read as a table, so that a users column represents how much money they are owed and their row represents how much money they owe others. At any point on the table, the row user owes the column user that sum of money. This way, the implementation of our other program features involve simple file operations to manipulate and read data from this group file.
 
 <p align="center">
-<img src="images/log_trans.png" alt="Add transaction" width="350"/>
+<img src="images/log_trans.png" alt="Add transaction" width="350"/><img src="images/fig4.png" alt="Group file after add transaction" width="350"/>
 <p/>
 
-For example, logging a transaction between two people can be reflected in the data by changing the values at the corresponding indexes. To log a transaction where Walter paid $15 for Melody's Uber ride, the values in the main file are updated.
-
-<p align="center">
-<img src="images/fig4.png" alt="Group file after add transaction" width="350"/>
-<p/>
-
-The function will also update personal files so users are able to specify the cost and reason for a payment to have taken place, and keep a log of past transactions.
+For example, logging a transaction between two people can be reflected in the data by changing the values at the corresponding indexes. To log a transaction where Walter paid $15 for Melody's Uber ride, the values in the main file are updated. The function will also update personal files so users are able to specify the cost and reason for a payment to have taken place, and keep a log of past transactions.
 
 <p align="center">
 <img src="images/fig5.png" alt="Walter's File" width="350"/><img src="images/fig6.png" alt="Melody's file" width="350"/>
