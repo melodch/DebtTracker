@@ -34,7 +34,7 @@ void new_group_input() {
     new_group_action(file_str, names_arr, num_of_users);
 }
 
-void log_expense_or_settlement() {
+void log_input() {
 
     char file_str[FILENAME_MAX];
     char user1[USERNAME_MAX], user2[USERNAME_MAX];
@@ -43,7 +43,7 @@ void log_expense_or_settlement() {
     int one, two, ch;
     char exp_or_settle[3];
 
-    puts("Enter filename: ");
+    puts("Enter group name: ");
     fgets(file_str, FILENAME_MAX, stdin);
 
     puts("Enter 'e' for expense, 's' for settlement: ");
@@ -78,13 +78,29 @@ void generate_personal_bill() {
     char user[USERNAME_MAX];
     int user_i;
 
-    puts("Enter filename: ");
+    puts("Enter group name: ");
     fgets(file_str, FILENAME_MAX, stdin);
 
     puts("Enter user name: ");
     fgets(user, USERNAME_MAX, stdin);
     user[strcspn(user, " \n")] = 0;
-    user_i = user_to_index(file_str, user);
+    // user_i = user_to_index(file_str, user);
 
-    generate_personal_bill_action(file_str, user_i);
+    generate_personal_bill_action(file_str, user);
+}
+
+void add_user_input() {
+
+    char group_name[FILENAME_MAX]; 
+    char addedUser[USERNAME_MAX];
+
+    // Getting location where to add the user to + count number of users NOW in the group
+    puts("Add this user to: ");
+    fgets(group_name, FILENAME_MAX, stdin);
+    
+    puts("Enter user: ");
+    fgets(addedUser, USERNAME_MAX, stdin);
+    
+    add_user(group_name, addedUser);
+
 }

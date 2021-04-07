@@ -16,12 +16,13 @@ void do_calculate(GtkWidget *calculate, gpointer data) {
     gtk_label_set_text(GTK_LABEL(result), buffer);
 }
 
-// gcc 007_gtk.c -o 007_gtk `pkg-config --cflags gtk+-3.0` `pkg-config --libs gtk+-3.0`
+// gcc `pkg-config --cflags gtk+-3.0` calculatorExample.c -o calculatorExample `pkg-config --libs gtk+-3.0`
 int main(int argc, char **argv) {
     GtkWidget *window, *grid, *calculate;
     gtk_init(&argc, &argv);
 
     window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+    gtk_window_set_default_size (GTK_WINDOW (window), 500, 500);
     g_signal_connect(window, "destroy", G_CALLBACK(gtk_main_quit), NULL);
 
     grid = gtk_grid_new();
