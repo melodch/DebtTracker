@@ -12,9 +12,9 @@ The first and main design decision we made for our application was to store our 
  
 When debugging and figuring out how to approach certain hurdles in our project, we used websites such as Stack Overflow, CodeForWin, and watched YouTube tutorial videos on the things we were trying to implement. The ZetCode written tutorial was particularly useful for understanding how to use the GTK library to create a graphical user interface for our application. It introduces the basics of GUI programming and layout management.
  
-Our final project is a command line program that has the six main features we planned to include. When we run our program, it prompts the user with a list of functions to choose from:
+Our final project is a command line program that has the six main features we planned to include. When we run our program, it prompts the user with a list of functions to choose from:<br>
 <img src="images/fig1.png" alt="Main Menu" width="400"/>
-This is a representation of our program’s “Main Menu”. From here, the user chooses a function to perform by entering a number linked to a specific task. This is a simple switch case that calls on the function associated with the chosen task.
+This is a representation of our program’s “Main Menu”. From here, the user chooses a function to perform by entering a number linked to a specific task. This is a simple switch case that calls on the function associated with the chosen task.<br>
 <img src="images/fig2.png" alt="Setting up a new group" width="400"/>
 To illustrate how our program works, we’ll walk through an example in which the user sets up a new group. The user enters ‘0’ into the command line which triggers a function that gathers information from the user needed to set up a new group. In this case, the user enters a file name to host the group data, the number of users that will be in the group, and their names. With this information, the program creates a plain text file to store group information as a table and an empty text file for each of the users.
 
