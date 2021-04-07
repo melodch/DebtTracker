@@ -19,6 +19,9 @@ We're currently working on making sure that user input is stored and is able to 
 [main file](../CSV/main.c)
 
 
+
+![alt text for screen readers](image/miro.png "Choosing program features")
+
 ```
 while (fgets(line, MAXLINE, fp)) {
     column = 0;
