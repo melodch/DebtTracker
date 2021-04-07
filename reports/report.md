@@ -58,27 +58,20 @@ For example, logging a transaction between two people can be reflected in the da
 
 
 ```
-while (fgets(line, MAXLINE, fp)) {
-    column = 0;
-    strcpy(buffer, line);
-    char* value = strtok(buffer, " \n");
-    while (value) {
-        if (column == c && row == r) {
-            int num = atoi(value);
-            num += change;
-            fprintf(new_fp, "%d ", num);
-        }
-        else if (column == r && row == c) {
-            int num = atoi(value);
-            num -= change;
-            fprintf(new_fp, "%d ", num);
-        }
-        else (fprintf(new_fp,"%s ", value));
-        value = strtok(NULL, " \n");
-        column++;
+while (value) {
+    if (column == c && row == r) {
+        int num = atoi(value);
+        num += change;
+        fprintf(new_fp, "%d ", num);
     }
-    fprintf(new_fp,"\n");
-    row++;
+    else if (column == r && row == c) {
+        int num = atoi(value);
+        num -= change;
+        fprintf(new_fp, "%d ", num);
+    }
+    else (fprintf(new_fp,"%s ", value));
+    value = strtok(NULL, " \n");
+    column++;
 }
 ```
 
