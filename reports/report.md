@@ -24,7 +24,11 @@ To illustrate how our program works, we’ll walk through an example in which th
 <p align="center">
  <img src="images/fig3.png" alt="Group file" width="350"/>
 <p/>
-Now that we have a file to contain group information, this serves as the central database of our program. Looking at this file allows us to track the users within the group, in terms of how much money they owe each other. This is the heart of our operation, the debt tracker. As transactions are made, the values in this file are updated accordingly. We structured the contents of this file to be read as a table, so that a users column represents how much money they are owed and their row represents how much money they owe others. At any point on the table, the row user owes the column user that sum of money. This way, the implementation of our other program features involve simple file operations to manipulate and read data from this group file. 
+Now that we have a file to contain group information, this serves as the central database of our program. Looking at this file allows us to track the users within the group, in terms of how much money they owe each other. This is the heart of our operation, the debt tracker. As transactions are made, the values in this file are updated accordingly. We structured the contents of this file to be read as a table, so that a users column represents how much money they are owed and their row represents how much money they owe others. At any point on the table, the row user owes the column user that sum of money. This way, the implementation of our other program features involve simple file operations to manipulate and read data from this group file.
+<p align="center">
+ <img src="images/fig4.png" alt="Group file" width="350"/>
+<p/>
+<img src="images/fig5.png" alt="Group file" width="350"/> | <img src="images/fig6.png" alt="Group file" width="350"/>
 
 usable debt tracking feature that our program aims to conduct. Here, we are able to enter the group in which we are trying to add to. We have two different options ‘e’ and ‘s’ that allow the user to choose between what they want to do. They are then able to type in both people that are making the transaction, and then they are able to write the cost and reason for the payment to have taken place.
 
