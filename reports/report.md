@@ -20,7 +20,7 @@ We're currently working on making sure that user input is stored and is able to 
 
 
 
-![alt text for screen readers](image/miro.png "Choosing program features")
+![alt text for screen readers](image/Miro.jpg "Choosing program features")
 
 ```
 while (fgets(line, MAXLINE, fp)) {
